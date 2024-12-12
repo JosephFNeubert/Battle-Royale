@@ -106,7 +106,35 @@ public class PlayerController : MonoBehaviourPun
     [PunRPC]
     void die()
     {
+        currHp = 0;
+        dead = true;
 
+        GameManager.instance.alivePlayers--;
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameManager.instance.CheckWinCondition();
+        }
+
+        if (photonView.IsMine)
+        {
+            if (curAttackerId != 0)
+            {
+                GameManager.instance.GetPlayer(curAttackerId).photonView.RPC("AddKill", RpcTarget.All);
+            }
+
+            GetComponentInChildren<CameraController>().SetAsSpectator();
+            _rb.isKinematic = true;
+            transform.position = new Vector3(0, -50, 0);
+        }
+    }
+
+    [PunRPC]
+    public void AddKill()
+    {
+        kills++;
+
+        // Update UI
     }
 
     [PunRPC]

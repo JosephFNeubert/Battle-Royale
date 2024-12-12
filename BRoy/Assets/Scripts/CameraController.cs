@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
 
     private float rotX;
     private float rotY;
-    private bool isSpectator = false;
+    private bool isSpectator;
 
     private void Start()
     {
@@ -58,5 +58,11 @@ public class CameraController : MonoBehaviour
             transform.localRotation = Quaternion.Euler(-rotY, 0, 0);
             transform.parent.rotation = Quaternion.Euler(0, rotX, 0);
         }
+    }
+
+    public void SetAsSpectator()
+    {
+        isSpectator = true;
+        transform.parent = null;
     }
 }
