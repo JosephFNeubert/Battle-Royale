@@ -38,6 +38,10 @@ MonoBehaviour:
   - DestroyRpc
   - UpdateLobbyUI
   - ChangeScene
+  - InGame
+  - Initialize
+  - SpawnPlayers
+  - SpawnPlayer
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
